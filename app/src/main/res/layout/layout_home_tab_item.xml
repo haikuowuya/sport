@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button android:id="@+id/btn_tab"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@null"
+        android:textColor="@drawable/activated_home_tab_textcolor_selector"
+        android:drawableTop="@drawable/activated_appointment_selector"
+        xmlns:tools="http://schemas.android.com/tools"
+
+             android:layout_height="match_parent">
+
+
+
+</Button>

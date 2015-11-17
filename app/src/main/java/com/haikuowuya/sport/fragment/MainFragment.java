@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TabHost;
 
 import com.haikuowuya.sport.R;
 import com.haikuowuya.sport.base.BaseFragment;
@@ -43,23 +44,31 @@ public class MainFragment extends BaseFragment
     private void setUpFragmentTabHost()
     {
         mFragmentTabHost.setup(mActivity, mActivity.getSupportFragmentManager(), R.id.frame_real_tab_container);
-        final Button btn1 = new Button(mActivity);
-        btn1.setTextColor(0xFFFFFFFF);
-        btn1.setText("TAB 1");
-        btn1.setTextSize(15.f);
-        final Button btn2 = new Button(mActivity);
-        btn2.setTextColor(0xFFFFFFFF);
-        btn2.setText("TAB 2");
-        btn2.setTextSize(15.f);
-        final Button btn3 = new Button(mActivity);
-        btn3.setTextColor(0xFFFFFFFF);
-        btn3.setText("TAB 3");
-        btn3.setTextSize(15.f);
+        final Button btnAppointment = (Button) LayoutInflater.from(mActivity).inflate(R.layout.layout_home_tab_item, null);
+        btnAppointment.setText("预约");
+        btnAppointment.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.activated_appointment_selector, 0, 0);
+        btnAppointment.setActivated(true);
+        final Button btnGroup = (Button) LayoutInflater.from(mActivity).inflate(R.layout.layout_home_tab_item, null);
+        btnGroup.setText("圈子");
+        btnGroup.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.activated_group_selector, 0, 0);
+        final Button btnSport = (Button) LayoutInflater.from(mActivity).inflate(R.layout.layout_home_tab_item, null);
+        btnSport.setText("健身");
+        btnSport.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.activated_sport_selector,0,0);
         MenuFragment menuFragment = MenuFragment.newInstance();
-        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btn1.getText().toString()).setIndicator(btn1), menuFragment.getClass(), null);
-        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btn2.getText().toString()).setIndicator(btn2), menuFragment.getClass(), null);
-        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btn3.getText().toString()).setIndicator(btn3), menuFragment.getClass(), null);
-
+        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnAppointment.getText().toString()).setIndicator(btnAppointment), AppointmentFragment.class, null);
+        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnGroup.getText().toString()).setIndicator(btnGroup), menuFragment.getClass(), null);
+        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnSport.getText().toString()).setIndicator(btnSport), menuFragment.getClass(), null);
+        mFragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener()
+        {
+            public void onTabChanged(String tabId)
+            {
+                String currentTabTag = mFragmentTabHost.getCurrentTabTag();
+                System.out.println("currentTabTag = " + currentTabTag + " tabId = " + tabId);
+                btnAppointment.setActivated(tabId.equals(btnAppointment.getText()));
+                btnGroup.setActivated(tabId.equals(btnGroup.getText()));
+                btnSport.setActivated(tabId.equals(btnSport.getText()));
+            }
+        });
     }
 
     @Override
