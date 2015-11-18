@@ -94,10 +94,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
             leftPadding = 0 - DensityUtils.dpToPx(mActivity, ViewUtils.getActionBarHeightInDp(mActivity));
             mTvCenterTitle.setPadding(leftPadding, 0, 0, 0);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            int homeIndicatorResId = R.drawable.ic_back;
+            int homeIndicatorResId = R.mipmap.ic_back;
             if (isSliding)
             {
-                homeIndicatorResId = R.drawable.ic_menu_menu;
+                homeIndicatorResId = R.mipmap.ic_menu_menu;
             }
             getSupportActionBar().setHomeAsUpIndicator(homeIndicatorResId);
             getSupportActionBar().setHomeButtonEnabled(true);

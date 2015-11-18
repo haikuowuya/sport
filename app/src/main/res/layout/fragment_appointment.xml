@@ -3,8 +3,8 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#FFF0F0F0"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFF0F0F0">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,30 +12,59 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="#FFFFFFFF"
-            android:layout_height="48dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:text="工业园区"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_height="match_parent"/>
+            android:layout_height="48dp"
+            android:background="#FFFFFFFF">
 
-            <TextView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:text="工业园区"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_height="match_parent"/>
-            <TextView
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:drawablePadding="4dp"
+                    android:drawableRight="@mipmap/ic_arrow_down"
+                    android:gravity="center"
+                    android:text="工业园区"/>
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:text="工业园区"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:drawablePadding="4dp"
+                    android:drawableRight="@mipmap/ic_arrow_down"
+                    android:gravity="center"
+                    android:text="智能排序"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:drawablePadding="4dp"
+                    android:drawableRight="@mipmap/ic_arrow_down"
+                    android:gravity="center"
+                    android:text="筛选"/>
+            </FrameLayout>
+
         </LinearLayout>
+
         <include
             android:layout_marginTop="10dp"
             layout="@layout/layout_recycler_view"
