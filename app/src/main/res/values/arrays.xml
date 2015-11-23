@@ -1,0 +1,13 @@
+<resources>
+     <string-array name="array_city_array">
+         <item>苏州</item>
+         <item>工业园区</item>
+         <item>相城区</item>
+         <item>吴中区</item>
+         <item>吴江区</item>
+         <item>高新区</item>
+         <item>姑苏区</item>
+         <item>沧浪区</item>
+         <item>市区</item>
+     </string-array>
+</resources>

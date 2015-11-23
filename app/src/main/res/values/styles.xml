@@ -68,6 +68,7 @@
 
 
     </style>
+
     <style name="Custom.RatingBar.Indicator" parent="AppTheme">
         <item name="android:progressDrawable">@drawable/shape_ratingbar</item>
         <item name="android:indeterminateDrawable">@drawable/shape_ratingbar</item>
@@ -76,6 +77,11 @@
         <item name="android:layout_width">16dp</item>
         <item name="android:layout_height">16dp</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ListPopupWindowStyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/base_popup_top_in</item>
+        <item name="android:windowExitAnimation">@anim/base_popup_top_out</item>
     </style>
 
 

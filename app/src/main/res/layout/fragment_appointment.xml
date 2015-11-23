@@ -19,11 +19,13 @@
             android:background="#FFFFFFFF">
 
             <FrameLayout
+                android:id="@+id/frame_city"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/tv_city"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -34,11 +36,13 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/frame_zhineng"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/tv_zhineng"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -49,11 +53,13 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/frame_select"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/tv_select"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
