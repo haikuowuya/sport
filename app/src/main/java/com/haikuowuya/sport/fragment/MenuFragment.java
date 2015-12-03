@@ -12,12 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
+import com.haikuowuya.core.util.StorageUtils;
 import com.haikuowuya.sport.R;
 import com.haikuowuya.sport.adapter.menu.MenuRecyclerAdapter;
 import com.haikuowuya.sport.base.BaseFragment;
 import com.haikuowuya.sport.util.BitmapUtils;
 import com.haikuowuya.sport.util.PhotoUtils;
-import com.haikuowuya.sport.util.StorageUtils;
 
 import java.util.LinkedList;
 

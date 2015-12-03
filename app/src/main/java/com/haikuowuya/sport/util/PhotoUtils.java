@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.haikuowuya.core.util.DensityUtils;
+import com.haikuowuya.core.util.StorageUtils;
 import com.haikuowuya.sport.R;
 import com.haikuowuya.sport.base.BaseActivity;
 

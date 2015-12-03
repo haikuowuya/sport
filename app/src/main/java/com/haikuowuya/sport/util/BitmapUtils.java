@@ -6,6 +6,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 
+import com.haikuowuya.core.util.MD5Utils;
+import com.haikuowuya.core.util.StorageUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -30,7 +30,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:drawablePadding="4dp"
-                    android:drawableRight="@mipmap/ic_arrow_down"
+                    android:drawableRight="@drawable/activated_arrow_selector"
                     android:gravity="center"
                     android:text="工业园区"/>
             </FrameLayout>
@@ -47,7 +47,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:drawablePadding="4dp"
-                    android:drawableRight="@mipmap/ic_arrow_down"
+                    android:drawableRight="@drawable/activated_arrow_selector"
                     android:gravity="center"
                     android:text="智能排序"/>
             </FrameLayout>
@@ -64,7 +64,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:drawablePadding="4dp"
-                    android:drawableRight="@mipmap/ic_arrow_down"
+                    android:drawableRight="@drawable/activated_arrow_selector"
                     android:gravity="center"
                     android:text="筛选"/>
             </FrameLayout>

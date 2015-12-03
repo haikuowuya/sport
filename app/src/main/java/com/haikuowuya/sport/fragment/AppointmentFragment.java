@@ -2,10 +2,10 @@ package com.haikuowuya.sport.fragment;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.ListPopupWindow;
-import android.support.v7.widget.RecyclerView;
 import android.text.StaticLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +18,13 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.haikuowuya.core.util.DensityUtils;
 import com.haikuowuya.sport.R;
 import com.haikuowuya.sport.adapter.appointment.AppointmentRecyclerAdapter;
 import com.haikuowuya.sport.base.BaseFragment;
 import com.haikuowuya.sport.model.GymItem;
 import com.haikuowuya.sport.util.DataUtils;
-import com.haikuowuya.sport.util.DensityUtils;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;
 
@@ -42,14 +43,14 @@ public class AppointmentFragment extends BaseFragment
     }
 
     @Bind(R.id.rv_recycler_view)
-    RecyclerView mRecyclerView;
+    XRecyclerView mRecyclerView;
     @Bind(R.id.tv_city)
     TextView mTvCity;
     @Bind(R.id.tv_select)
     TextView mTvSelect;
     @Bind(R.id.tv_zhineng)
     TextView mTvZhiNeng;
-    private ListPopupWindow mListPopupWindow;
+
     private List<GymItem> mGymItems;
     private PopupWindow mPopupWindow;
     View mPopupView;
@@ -59,8 +60,7 @@ public class AppointmentFragment extends BaseFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_appointment, null);
-        return view;
+        return inflater.inflate(R.layout.fragment_appointment, null);
     }
 
     @Override
@@ -71,13 +71,39 @@ public class AppointmentFragment extends BaseFragment
         mGymItems = DataUtils.genMockGymItems();
         mRecyclerView.setAdapter(new AppointmentRecyclerAdapter(mGymItems));
         initListPopupWindow();
-
         initPopupWindow();
+        mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+                new Handler().postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        mRecyclerView.refreshComplete();
+                    }
+                }, 2000L);
+            }
+
+            @Override
+            public void onLoadMore()
+            {
+                new Handler().postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        mRecyclerView.loadMoreComplete();
+                    }
+                }, 2000L);
+            }
+        });
     }
 
     private void initPopupWindow()
     {
-
         mPopupWindow = new PopupWindow(mActivity);
         // 设置SelectPicPopupWindow弹出窗体的宽
         mPopupWindow.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
@@ -96,23 +122,31 @@ public class AppointmentFragment extends BaseFragment
         ListAdapter adapter = ArrayAdapter.createFromResource(mActivity, R.array.array_city_array, android.R.layout.simple_list_item_1);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new OnItemClickListenerImpl());
-        mPopupView.findViewById(R.id.view_view).setOnClickListener(
-                new View.OnClickListener()
+        mPopupView.findViewById(R.id.view_view).setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if (null != mPopupWindow && mPopupWindow.isShowing())
                 {
-                    public void onClick(View v)
-                    {
-                        if (null != mPopupWindow && mPopupWindow.isShowing())
-                        {
-                            mPopupWindow.dismiss();
-                        }
-                    }
-                });
+                    mPopupWindow.dismiss();
+                }
+            }
+        });
         mPopupWindow.setContentView(mPopupView);
+        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener()
+        {
+            public void onDismiss()
+            {
+                mTvCity.setActivated(false);
+                mTvSelect.setActivated(false);
+                mTvZhiNeng.setActivated(false);
+            }
+        });
     }
 
     private void initListPopupWindow()
     {
-        mListPopupWindow = new ListPopupWindow(mActivity);
+        ListPopupWindow mListPopupWindow = new ListPopupWindow(mActivity);
         mListPopupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mListPopupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         mListPopupWindow.setForceIgnoreOutsideTouch(true);
@@ -129,18 +163,7 @@ public class AppointmentFragment extends BaseFragment
         int offsetX = (int) ((DensityUtils.getScreenWidthInPx(mActivity) / 3 - StaticLayout.getDesiredWidth(mTvCity.getText(), mTvCity.getPaint())) / 2);
         mPopupWindow.showAsDropDown(view, 0 - offsetX, 0);
         mCurrentType = 0;
-
-//        if (mListPopupWindow.isShowing())
-//        {
-//            mListPopupWindow.dismiss();
-//            if (view == mListPopupWindow.getAnchorView())
-//            {
-//                return;
-//            }
-//        }
-//        mListPopupWindow.setAnchorView(view);
-//        mListPopupWindow.setHorizontalOffset(0 - offsetX);
-//        mListPopupWindow.show();
+        mTvCity.setActivated(true);
     }
 
     @OnClick(value = {R.id.frame_zhineng, R.id.tv_zhineng})
@@ -149,19 +172,7 @@ public class AppointmentFragment extends BaseFragment
         mCurrentType = 1;
         int offsetX = (int) (DensityUtils.getScreenWidthInPx(mActivity) / 3 + ((DensityUtils.getScreenWidthInPx(mActivity) / 3 - StaticLayout.getDesiredWidth(mTvZhiNeng.getText(), mTvZhiNeng.getPaint())) / 2));
         mPopupWindow.showAsDropDown(view, 0 - offsetX, 0);
-//        if (mListPopupWindow.isShowing())
-//        {
-//            mListPopupWindow.dismiss();
-//            if (view == mListPopupWindow.getAnchorView())
-//            {
-//                return;
-//            }
-//        }
-//        mListPopupWindow.setAnchorView(view);
-//        mListPopupWindow.setHorizontalOffset(0 - offsetX);
-////        int offsetY = DensityUtils.dpToPx(mActivity,129.f);
-////        mListPopupWindow.setVerticalOffset(offsetY);
-//        mListPopupWindow.show();
+        mTvZhiNeng.setActivated(true);
     }
 
     @OnClick(value = {R.id.frame_select, R.id.tv_select})
@@ -170,17 +181,7 @@ public class AppointmentFragment extends BaseFragment
         mCurrentType = 2;
         int offsetX = (int) (DensityUtils.getScreenWidthInPx(mActivity) * 2 / 3 + ((DensityUtils.getScreenWidthInPx(mActivity) / 3 - StaticLayout.getDesiredWidth(mTvSelect.getText(), mTvSelect.getPaint())) / 2));
         mPopupWindow.showAsDropDown(view, 0 - offsetX, 0);
-//        if (mListPopupWindow.isShowing())
-//        {
-//            mListPopupWindow.dismiss();
-//            if (view == mListPopupWindow.getAnchorView())
-//            {
-//                return;
-//            }
-//        }
-//        mListPopupWindow.setAnchorView(view);
-//        mListPopupWindow.setHorizontalOffset(0 - offsetX);
-//        mListPopupWindow.show();
+        mTvSelect.setActivated(true);
     }
 
     @Override
@@ -206,7 +207,6 @@ public class AppointmentFragment extends BaseFragment
                 } else if (mCurrentType == 2)
                 {
                     mTvSelect.setText(parent.getAdapter().getItem(position).toString());
-
                 }
 
             }

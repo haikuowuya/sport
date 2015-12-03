@@ -19,9 +19,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.haikuowuya.core.util.DensityUtils;
+import com.haikuowuya.core.util.ViewUtils;
 import com.haikuowuya.sport.R;
-import com.haikuowuya.sport.util.DensityUtils;
-import com.haikuowuya.sport.util.ViewUtils;
 
 import butterknife.ButterKnife;
 
@@ -47,10 +47,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
         super.onCreate(savedInstanceState);
         mActivity = this;
         mPreferences = mActivity.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        ButterKnife.bind(mActivity);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        ViewUtils.alphaStatusBarAndNavBar(mActivity, ContextCompat.getColor(mActivity, R.color.color_main_color), 0xFF000000);
+       ViewUtils.alphaStatusBarAndNavBar(mActivity, ContextCompat.getColor(mActivity, R.color.color_main_color), 0xFF000000);
 
     }
 
@@ -64,6 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
     {
         View contentView = LayoutInflater.from(mActivity).inflate(layoutResID, null);
         setContentView(contentView);
+        ButterKnife.bind(mActivity);
     }
 
     @Override

@@ -56,7 +56,7 @@ public class MainFragment extends BaseFragment
         btnSport.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.activated_sport_selector, 0, 0);
         MenuFragment menuFragment = MenuFragment.newInstance();
         mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnAppointment.getText().toString()).setIndicator(btnAppointment), AppointmentFragment.class, null);
-        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnGroup.getText().toString()).setIndicator(btnGroup), menuFragment.getClass(), null);
+        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnGroup.getText().toString()).setIndicator(btnGroup), GroupFragment.class, null);
         mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnSport.getText().toString()).setIndicator(btnSport), menuFragment.getClass(), null);
         mActivity.setCenterTitle(btnAppointment.getText());
         mFragmentTabHost.setOnTabChangedListener(

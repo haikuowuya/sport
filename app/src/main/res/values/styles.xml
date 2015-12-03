@@ -9,6 +9,7 @@
         <item name="colorAccent">#FFFF4081</item>
         <!--页面Activity跳转的样式-->
         <item name="android:windowAnimationStyle">@style/Animation.Activity.Style</item>
+        <item name="vpiCirclePageIndicatorStyle">@null</item>
 
     </style>
 

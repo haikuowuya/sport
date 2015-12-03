@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.haikuowuya.core.util.DensityUtils;
 import com.haikuowuya.sport.R;
 import com.haikuowuya.sport.fragment.MenuFragment;
 import com.haikuowuya.sport.slidingmenu.SlidingMenu;
-import com.haikuowuya.sport.util.DensityUtils;
 
 /**
  * 中间显示一个标题的Activity的基类，标题的名称为{@link BaseActivity#getActivityTitle()}
@@ -53,7 +53,7 @@ public abstract class BaseSlidingMenuActivity extends BaseTitleActivity
     {
         mSlidingMenu = new SlidingMenu(mActivity);
         mSlidingMenu.setMode(SlidingMenu.LEFT);
-        mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         mSlidingMenu.setShadowWidth(DensityUtils.dpToPx(mActivity, 15.f));
         mSlidingMenu.setBehindOffset(DensityUtils.dpToPx(mActivity, 120.f));
         mSlidingMenu.setFadeDegree(0.65f);

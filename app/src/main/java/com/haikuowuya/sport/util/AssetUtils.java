@@ -7,7 +7,6 @@ import java.io.InputStream;
 
 public class AssetUtils
 {
-
     /**
      * 默认文件名称后缀
      */
@@ -15,16 +14,24 @@ public class AssetUtils
 
     /***
      * 读取assets目录中的文件，转化为字符串， 默认后缀名是json
-     * @param context
-     * @param fileName    ：assets目录中的文件名称， 不带后缀
-     * @return
+     *
+     * @param context  :context
+     * @param fileName ：assets目录中的文件名称， 不带后缀
+     * @return string
      */
     public static String readAssetData(Context context, String fileName)
     {
-
         return readAssetData(context, fileName, DEFAULT_FILENAME_SUFFIXES);
     }
 
+    /***
+     * 读取assets目录中的文件，转化为字符串，
+     *
+     * @param context  context
+     * @param fileName assets目录中的文件名称， 不带后缀
+     * @param suffixes suffixes
+     * @return string
+     */
     private static String readAssetData(Context context, String fileName, String suffixes)
     {
         StringBuffer stringBuffer = new StringBuffer();
@@ -39,21 +46,17 @@ public class AssetUtils
                 stringBuffer.append(new String(buff, 0, len, "UTF-8"));
             }
             return stringBuffer.toString();
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
-        }
-        finally
+        } finally
         {
             if (inputStream != null)
             {
                 try
                 {
-
                     inputStream.close();
-                }
-                catch (IOException e)
+                } catch (IOException e)
                 {
                     e.printStackTrace();
                 }

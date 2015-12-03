@@ -6,7 +6,6 @@ import com.haikuowuya.sport.fragment.MainFragment;
 
 public class MainActivity extends BaseSlidingMenuActivity
 {
-
     @Override
     public BaseFragment fragmentAsView()
     {
