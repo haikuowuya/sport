@@ -2,7 +2,7 @@ package com.haikuowuya.sport.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,20 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
-import com.haikuowuya.core.util.StorageUtils;
+import com.haikuowuya.core.util.PhotoUtils;
 import com.haikuowuya.sport.R;
-import com.haikuowuya.sport.adapter.menu.MenuRecyclerAdapter;
+import com.haikuowuya.sport.adapter.home.menu.MenuRecyclerAdapter;
 import com.haikuowuya.sport.base.BaseFragment;
-import com.haikuowuya.sport.util.BitmapUtils;
-import com.haikuowuya.sport.util.PhotoUtils;
 
 import java.util.LinkedList;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
-/**
- * Created by Steven on 2015/11/3 0003.
+/***
+ * 侧滑左侧的菜单
  */
 public class MenuFragment extends BaseFragment
 {
@@ -35,9 +33,6 @@ public class MenuFragment extends BaseFragment
         return fragment;
     }
 
-    /***
-     * 底部的功能菜单列表
-     */
     @Bind(R.id.rv_recycler_view)
     RecyclerView mRecyclerView;
     @Bind(R.id.civ_photo)
@@ -91,26 +86,13 @@ public class MenuFragment extends BaseFragment
     {
         if (resultCode == Activity.RESULT_OK)
         {
-            String imaegFilePath = null;
-            if (requestCode == PhotoUtils.REQUEST_FROM_PHOTO)
+            String croppedImagePath = PhotoUtils.getFinalCroppedImagePath();
+            if (null != croppedImagePath)
             {
-                if (null != data && data.getData() != null)
-                {
-                    imaegFilePath = StorageUtils.getFilePathFromUri(mActivity, data.getData());
-                }
-            } else if (requestCode == PhotoUtils.REQUEST_FROM_CAMERA)
-            {
-                imaegFilePath = PhotoUtils.getFinalCameraImagePath();
-            }
-            if (null != imaegFilePath)
-            {
-                imaegFilePath = BitmapUtils.getCompressBitmapFilePath(mActivity, imaegFilePath);
-                Bitmap bitmap = BitmapUtils.scaleBitmap(imaegFilePath);
-                bitmap = BitmapUtils.rotateBitmap(imaegFilePath, bitmap);
-                mCircularImageView.setImageBitmap(bitmap);
+                mCircularImageView.setImageBitmap(BitmapFactory.decodeFile(croppedImagePath));
             } else
             {
-                mActivity.showToast("图片选取失败");
+                System.out.println("图片选取失败");
             }
         }
     }

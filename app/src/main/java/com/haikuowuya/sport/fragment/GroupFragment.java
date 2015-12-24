@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.haikuowuya.core.base.BaseHKWYFragment;
 import com.haikuowuya.sport.R;
 import com.haikuowuya.sport.base.BaseFragment;
 import com.haikuowuya.sport.view.TabViewPagerIndicator;
@@ -41,12 +42,13 @@ public class GroupFragment extends BaseFragment
     {
         super.onActivityCreated(savedInstanceState);
         mTabViewPagerIndicator.getIndicator().setVisibility(View.GONE);
+        mTabViewPagerIndicator.getTabStrip().setBackgroundColor(0xFFFFFFFF);
         mTabViewPagerIndicator.setViewPagerAdapter(genMockPageAdapter());
     }
 
     private PagerAdapter genMockPageAdapter()
     {
-        final BaseFragment[] baseFragments = {SubGroupFragment.newInstance(), AttentionFragment.newInstance()};
+        final BaseHKWYFragment[] baseFragments = {SubGroupFragment.newInstance(), AttentionFragment.newInstance()};
         FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getChildFragmentManager())
         {
             @Override

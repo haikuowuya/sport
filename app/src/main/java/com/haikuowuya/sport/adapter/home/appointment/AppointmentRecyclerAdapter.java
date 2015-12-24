@@ -1,4 +1,4 @@
-package com.haikuowuya.sport.adapter.appointment;
+package com.haikuowuya.sport.adapter.home.appointment;
 
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;

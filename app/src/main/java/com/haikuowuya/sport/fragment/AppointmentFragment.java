@@ -2,10 +2,10 @@ package com.haikuowuya.sport.fragment;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.ListPopupWindow;
+import android.support.v7.widget.RecyclerView;
 import android.text.StaticLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -20,11 +21,10 @@ import android.widget.TextView;
 
 import com.haikuowuya.core.util.DensityUtils;
 import com.haikuowuya.sport.R;
-import com.haikuowuya.sport.adapter.appointment.AppointmentRecyclerAdapter;
+import com.haikuowuya.sport.adapter.home.appointment.AppointmentRecyclerAdapter;
 import com.haikuowuya.sport.base.BaseFragment;
 import com.haikuowuya.sport.model.GymItem;
 import com.haikuowuya.sport.util.DataUtils;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class AppointmentFragment extends BaseFragment
     }
 
     @Bind(R.id.rv_recycler_view)
-    XRecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
     @Bind(R.id.tv_city)
     TextView mTvCity;
     @Bind(R.id.tv_select)
@@ -72,34 +72,7 @@ public class AppointmentFragment extends BaseFragment
         mRecyclerView.setAdapter(new AppointmentRecyclerAdapter(mGymItems));
         initListPopupWindow();
         initPopupWindow();
-        mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener()
-        {
-            @Override
-            public void onRefresh()
-            {
-                new Handler().postDelayed(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        mRecyclerView.refreshComplete();
-                    }
-                }, 2000L);
-            }
 
-            @Override
-            public void onLoadMore()
-            {
-                new Handler().postDelayed(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        mRecyclerView.loadMoreComplete();
-                    }
-                }, 2000L);
-            }
-        });
     }
 
     private void initPopupWindow()
@@ -116,9 +89,11 @@ public class AppointmentFragment extends BaseFragment
         // 设置SelectPicPopupWindow弹出窗体动画效果
         mPopupWindow.setAnimationStyle(R.style.ListPopupWindowStyle);
         // 设置SelectPicPopupWindow弹出窗体的背景
-        mPopupWindow.setBackgroundDrawable(new ColorDrawable(0x88000000));
+        mPopupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
         mPopupView = LayoutInflater.from(mActivity).inflate(R.layout.layout_popup_view, null);
         ListView listView = (ListView) mPopupView.findViewById(R.id.lv_listview);
+        int listViewHeight = DensityUtils.getScreenHeightInPx(mActivity)*3/5;
+        listView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,listViewHeight));
         ListAdapter adapter = ArrayAdapter.createFromResource(mActivity, R.array.array_city_array, android.R.layout.simple_list_item_1);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new OnItemClickListenerImpl());
@@ -208,7 +183,6 @@ public class AppointmentFragment extends BaseFragment
                 {
                     mTvSelect.setText(parent.getAdapter().getItem(position).toString());
                 }
-
             }
         }
     }

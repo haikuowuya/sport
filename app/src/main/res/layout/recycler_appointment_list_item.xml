@@ -8,7 +8,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-
         android:background="#FFFFFFFF">
 
         <ImageView
@@ -24,8 +23,8 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="健身房名称"
-            android:textSize="18sp"
-            android:textColor="#FFFFFFFF"/>
+            android:textColor="#FFFFFFFF"
+            android:textSize="18sp"/>
 
         <RatingBar
             style="@style/Custom.RatingBar.Indicator"

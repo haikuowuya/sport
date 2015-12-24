@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.haikuowuya.core.util.DensityUtils;
 import com.haikuowuya.sport.R;
-import com.haikuowuya.sport.adapter.home.group.AttentionRecyclerAdapter;
+import com.haikuowuya.sport.adapter.home.bodybuild.BodyBuildRecyclerAdapter;
 import com.haikuowuya.sport.base.BaseFragment;
 
 import butterknife.Bind;
@@ -19,11 +19,11 @@ import butterknife.Bind;
 /**
  * Created by Steven on 2015/12/2 0002.
  */
-public class AttentionFragment extends BaseFragment
+public class BodyBuildFragment extends BaseFragment
 {
-    public static AttentionFragment newInstance()
+    public static BodyBuildFragment newInstance()
     {
-        AttentionFragment fragment = new AttentionFragment();
+        BodyBuildFragment fragment = new BodyBuildFragment();
         return fragment;
     }
 
@@ -34,7 +34,7 @@ public class AttentionFragment extends BaseFragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_attention, container, false);
+        return inflater.inflate(R.layout.fragment_bodybuild, container, false);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class AttentionFragment extends BaseFragment
     {
         super.onActivityCreated(savedInstanceState);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mRecyclerView.setAdapter(new AttentionRecyclerAdapter());
-        final int paddingBottom = DensityUtils.dpToPx(mActivity, 6.f);
+        mRecyclerView.setAdapter(new BodyBuildRecyclerAdapter());
+        final int paddingBottom = DensityUtils.dpToPx(mActivity, 4.f);
         RecyclerView.ItemDecoration decor = new RecyclerView.ItemDecoration()
         {
             @Override

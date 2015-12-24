@@ -54,24 +54,21 @@ public class MainFragment extends BaseFragment
         final Button btnSport = (Button) LayoutInflater.from(mActivity).inflate(R.layout.layout_home_tab_item, null);
         btnSport.setText("健身");
         btnSport.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.activated_sport_selector, 0, 0);
-        MenuFragment menuFragment = MenuFragment.newInstance();
         mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnAppointment.getText().toString()).setIndicator(btnAppointment), AppointmentFragment.class, null);
         mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnGroup.getText().toString()).setIndicator(btnGroup), GroupFragment.class, null);
-        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnSport.getText().toString()).setIndicator(btnSport), menuFragment.getClass(), null);
+        mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(btnSport.getText().toString()).setIndicator(btnSport), BodyBuildFragment.class, null);
         mActivity.setCenterTitle(btnAppointment.getText());
-        mFragmentTabHost.setOnTabChangedListener(
-                new TabHost.OnTabChangeListener()
-                {
-                    public void onTabChanged(String tabId)
-                    {
-                        //  String currentTabTag = mFragmentTabHost.getCurrentTabTag();
-                        //  System.out.println("currentTabTag = " + currentTabTag + " tabId = " + tabId);
-                        btnAppointment.setActivated(tabId.equals(btnAppointment.getText()));
-                        btnGroup.setActivated(tabId.equals(btnGroup.getText()));
-                        btnSport.setActivated(tabId.equals(btnSport.getText()));
-                        mActivity.setCenterTitle(tabId);
-                    }
-                });
+        mFragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener()
+        {
+            public void onTabChanged(String tabId)
+            {
+
+                btnAppointment.setActivated(tabId.equals(btnAppointment.getText()));
+                btnGroup.setActivated(tabId.equals(btnGroup.getText()));
+                btnSport.setActivated(tabId.equals(btnSport.getText()));
+                mActivity.setCenterTitle(tabId);
+            }
+        });
     }
 
     @Override

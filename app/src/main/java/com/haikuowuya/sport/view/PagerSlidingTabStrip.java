@@ -35,7 +35,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView
     /**
      * 是否指示器的长度只是和文字的长度一直而不是整个TextView的长度
      */
-    private static final boolean INDICATOR_WIDTH_EQUALS_TEXTVIEW_VALID_WIDTH = false;
+    private static final boolean INDICATOR_WIDTH_EQUALS_TEXTVIEW_VALID_WIDTH = true;
     // @formatter:off
     private static final int[] ATTRS = new int[]{android.R.attr.textSize, android.R.attr.textColor};
     private final PageListener pageListener = new PageListener();
@@ -385,7 +385,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView
         }
         if (INDICATOR_WIDTH_EQUALS_TEXTVIEW_VALID_WIDTH)
         {
-            float padding = (lineRight - lineLeft - textWidth) / 2;
+            float padding = (lineRight - lineLeft - textWidth*2) / 2;
             lineLeft += padding;
             lineRight -= padding;
         }

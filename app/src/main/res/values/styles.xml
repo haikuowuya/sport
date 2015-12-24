@@ -1,74 +1,13 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="HKWY.Light">
+        <item name="android:background">#00000000</item>
+        <!--标题栏的高度-->
+        <item name="title_bar_height">48dp</item>
         <item name="colorPrimary">@color/color_main_color</item>
-        <item name="colorPrimaryDark">@color/color_main_color</item>
-        <item name="colorAccent">#FFFF4081</item>
-        <!--页面Activity跳转的样式-->
-        <item name="android:windowAnimationStyle">@style/Animation.Activity.Style</item>
-        <item name="vpiCirclePageIndicatorStyle">@null</item>
-
     </style>
 
-    <style name="Base.SwipeBack.AppTheme" parent="Base.AppTheme">
-        <!--页面Activity跳转的样式-->
-        <item name="android:windowAnimationStyle">@style/Animation.Activity.Style</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
-    </style>
-
-    <style name="AppTheme" parent="Base.SwipeBack.AppTheme">
-
-    </style>
-
-
-    <!--默认Activity页面切换样式-->
-    <style name="Animation.Activity.Style" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/base_slide_right_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/base_stay_orig</item>
-        <item name="android:activityCloseEnterAnimation">@anim/base_stay_orig</item>
-        <item name="android:activityCloseExitAnimation">@anim/base_slide_right_out</item>
-        <item name="android:taskOpenEnterAnimation">@anim/base_slide_right_in</item>
-        <item name="android:taskOpenExitAnimation">@anim/base_stay_orig</item>
-        <item name="android:taskCloseEnterAnimation">@anim/base_stay_orig</item>
-        <item name="android:taskCloseExitAnimation">@anim/base_slide_right_out</item>
-        <item name="android:taskToFrontEnterAnimation">@anim/base_slide_right_in</item>
-        <item name="android:taskToFrontExitAnimation">@anim/base_stay_orig</item>
-        <item name="android:taskToBackEnterAnimation">@anim/base_stay_orig</item>
-        <item name="android:taskToBackExitAnimation">@anim/base_slide_right_out</item>
-        <item name="android:fragmentOpenEnterAnimation">@anim/base_slide_right_in</item>
-        <item name="android:fragmentOpenExitAnimation">@anim/base_stay_orig</item>
-        <item name="android:fragmentCloseEnterAnimation">@anim/base_stay_orig</item>
-        <item name="android:fragmentCloseExitAnimation">@anim/base_slide_right_out</item>
-    </style>
-
-    <!--支持滑动结束Activity页面的切换样式-->
-    <style name="Animation.Activity.Translucent.Style" parent="@android:style/Animation.Translucent">
-        <item name="android:windowEnterAnimation">@anim/base_slide_right_in</item>
-        <item name="android:windowExitAnimation">@anim/base_slide_right_out</item>
-
-        <item name="android:activityOpenEnterAnimation">@anim/base_slide_right_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/base_stay_orig</item>
-        <item name="android:activityCloseEnterAnimation">@anim/base_stay_orig</item>
-        <item name="android:activityCloseExitAnimation">@anim/base_slide_right_out</item>
-        <item name="android:taskOpenEnterAnimation">@anim/base_slide_right_in</item>
-        <item name="android:taskOpenExitAnimation">@anim/base_stay_orig</item>
-        <item name="android:taskCloseEnterAnimation">@anim/base_stay_orig</item>
-        <item name="android:taskCloseExitAnimation">@anim/base_slide_right_out</item>
-        <item name="android:taskToFrontEnterAnimation">@anim/base_slide_right_in</item>
-        <item name="android:taskToFrontExitAnimation">@anim/base_stay_orig</item>
-        <item name="android:taskToBackEnterAnimation">@anim/base_stay_orig</item>
-        <item name="android:taskToBackExitAnimation">@anim/base_slide_right_out</item>
-        <item name="android:fragmentOpenEnterAnimation">@anim/base_slide_right_in</item>
-        <item name="android:fragmentOpenExitAnimation">@anim/base_stay_orig</item>
-        <item name="android:fragmentCloseEnterAnimation">@anim/base_stay_orig</item>
-        <item name="android:fragmentCloseExitAnimation">@anim/base_slide_right_out</item>
-
-
-    </style>
 
     <style name="Custom.RatingBar.Indicator" parent="AppTheme">
         <item name="android:progressDrawable">@drawable/shape_ratingbar</item>

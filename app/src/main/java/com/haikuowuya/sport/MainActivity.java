@@ -1,13 +1,21 @@
 package com.haikuowuya.sport;
 
-import com.haikuowuya.sport.base.BaseFragment;
-import com.haikuowuya.sport.base.BaseSlidingMenuActivity;
-import com.haikuowuya.sport.fragment.MainFragment;
+import android.content.Intent;
+import android.os.Bundle;
 
-public class MainActivity extends BaseSlidingMenuActivity
+import com.haikuowuya.core.base.BaseHKWYFragment;
+import com.haikuowuya.core.base.BaseHKWYSlidingMenuActivity;
+import com.haikuowuya.core.slidingmenu.SlidingMenu;
+import com.haikuowuya.sport.fragment.MainFragment;
+import com.haikuowuya.sport.fragment.MenuFragment;
+
+public class MainActivity extends BaseHKWYSlidingMenuActivity
 {
+
+    private MenuFragment mMenuFragment;
+
     @Override
-    public BaseFragment fragmentAsView()
+    public BaseHKWYFragment fragmentAsView()
     {
         return MainFragment.newInstance();
     }
@@ -16,5 +24,29 @@ public class MainActivity extends BaseSlidingMenuActivity
     public CharSequence getActivityTitle()
     {
         return "首页";
+    }
+
+    @Override
+    public BaseHKWYFragment fragmentAsMenu()
+    {
+        mMenuFragment = MenuFragment.newInstance();
+        return mMenuFragment;
+    }
+
+    @Override
+    public void afterOnCreate(Bundle savedInstanceState)
+    {
+        super.afterOnCreate(savedInstanceState);
+        mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (null != mMenuFragment)
+        {
+            mMenuFragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

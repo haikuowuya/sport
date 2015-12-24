@@ -7,14 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.haikuowuya.core.base.BaseHKWYActivity;
+import com.haikuowuya.core.base.BaseHKWYFragment;
+
 import butterknife.ButterKnife;
 
 /**
  * Created by raiyi-suzhou on 2015/5/11 0011.
  */
-public abstract class BaseFragment extends Fragment implements IFragmentTitle
+public abstract class BaseFragment extends BaseHKWYFragment
 {
-    protected BaseActivity mActivity;
+    protected BaseHKWYActivity mActivity;
     /**
      * 一个标识值， 应该在{@link Fragment#onCreateView(LayoutInflater, ViewGroup, Bundle)}方法中将其修改为true
      */
@@ -26,9 +29,8 @@ public abstract class BaseFragment extends Fragment implements IFragmentTitle
     public void onAttach(Activity activity)
     {
         super.onAttach(activity);
-        mActivity = (BaseActivity) activity;
+        mActivity = (BaseHKWYActivity) activity;
         mFragment = this;
-
     }
 
     @Override
@@ -40,8 +42,6 @@ public abstract class BaseFragment extends Fragment implements IFragmentTitle
             ButterKnife.bind(mFragment, view);
         }
     }
-
-
     @Override
     public void onResume()
     {

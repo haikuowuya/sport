@@ -1,4 +1,4 @@
-package com.haikuowuya.sport.adapter.menu;
+package com.haikuowuya.sport.adapter.home.menu;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.haikuowuya.core.base.BaseHKWYActivity;
 import com.haikuowuya.sport.R;
-import com.haikuowuya.sport.base.BaseActivity;
 import com.haikuowuya.sport.model.BaseItem;
 
 import java.util.List;
@@ -20,17 +20,17 @@ public class MenuRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 {
     private LayoutInflater mLayoutInflater;
     private List<MenuItem> mItemList;
-    private BaseActivity mActivity;
+    private BaseHKWYActivity mActivity;
 
     private OnRecyclerItemClickListener mOnRecyclerItemClickListener;
 
-    public MenuRecyclerAdapter(BaseActivity activity, List<MenuItem> list)
+    public MenuRecyclerAdapter(BaseHKWYActivity activity, List<MenuItem> list)
     {
         mActivity = activity;
         mLayoutInflater = LayoutInflater.from(mActivity);
         mItemList = list;
     }
-    public MenuRecyclerAdapter(BaseActivity activity, List<MenuItem> list, OnRecyclerItemClickListener onRecyclerItemClickListener )
+    public MenuRecyclerAdapter(BaseHKWYActivity activity, List<MenuItem> list, OnRecyclerItemClickListener onRecyclerItemClickListener )
     {
         mActivity = activity;
         mLayoutInflater = LayoutInflater.from(mActivity);
